@@ -1,0 +1,200 @@
+{
+  "format": 1,
+  "restore": {
+    "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\samples\\Hangfire.AspNetCore.Plus.Sample\\Hangfire.AspNetCore.Plus.Sample.csproj": {}
+  },
+  "projects": {
+    "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\samples\\Hangfire.AspNetCore.Plus.Sample\\Hangfire.AspNetCore.Plus.Sample.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\samples\\Hangfire.AspNetCore.Plus.Sample\\Hangfire.AspNetCore.Plus.Sample.csproj",
+        "projectName": "Hangfire.AspNetCore.Plus.Sample",
+        "projectPath": "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\samples\\Hangfire.AspNetCore.Plus.Sample\\Hangfire.AspNetCore.Plus.Sample.csproj",
+        "packagesPath": "C:\\Users\\Alireza\\.nuget\\packages\\",
+        "outputPath": "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\samples\\Hangfire.AspNetCore.Plus.Sample\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Alireza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.ebidar.com/api/v2": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\src\\Hangfire.AspNetCore.Plus\\Hangfire.AspNetCore.Plus.csproj": {
+                "projectPath": "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\src\\Hangfire.AspNetCore.Plus\\Hangfire.AspNetCore.Plus.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Hangfire.SqlServer": {
+              "target": "Package",
+              "version": "[1.7.19, )"
+            },
+            "Hangfire.Tags.SqlServer": {
+              "target": "Package",
+              "version": "[1.7.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[5.0.1, )",
+              "noWarn": [
+                "NU1605"
+              ]
+            },
+            "Microsoft.AspNetCore.Authentication.OpenIdConnect": {
+              "target": "Package",
+              "version": "[5.0.1, )",
+              "noWarn": [
+                "NU1605"
+              ]
+            },
+            "Swashbuckle.AspNetCore": {
+              "target": "Package",
+              "version": "[5.6.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\src\\Hangfire.AspNetCore.Plus\\Hangfire.AspNetCore.Plus.csproj": {
+      "version": "1.0.0-alpha",
+      "restore": {
+        "projectUniqueName": "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\src\\Hangfire.AspNetCore.Plus\\Hangfire.AspNetCore.Plus.csproj",
+        "projectName": "Hangfire.AspNetCore.Plus",
+        "projectPath": "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\src\\Hangfire.AspNetCore.Plus\\Hangfire.AspNetCore.Plus.csproj",
+        "packagesPath": "C:\\Users\\Alireza\\.nuget\\packages\\",
+        "outputPath": "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\src\\Hangfire.AspNetCore.Plus\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Microsoft\\Xamarin\\NuGet",
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Alireza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://nuget.ebidar.com/api/v2": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "AspNetCore.HealthChecks.Hangfire": {
+              "target": "Package",
+              "version": "[3.1.1, )"
+            },
+            "Hangfire.AspNetCore": {
+              "target": "Package",
+              "version": "[1.7.14, )"
+            },
+            "Hangfire.Console": {
+              "target": "Package",
+              "version": "[1.4.2, )"
+            },
+            "Hangfire.Console.Extensions": {
+              "target": "Package",
+              "version": "[1.0.3, )"
+            },
+            "Hangfire.Console.Extensions.Serilog": {
+              "target": "Package",
+              "version": "[1.0.0, )"
+            },
+            "Hangfire.Core": {
+              "target": "Package",
+              "version": "[1.7.14, )"
+            },
+            "Hangfire.Heartbeat": {
+              "target": "Package",
+              "version": "[0.5.0, )"
+            },
+            "Hangfire.MissionControl": {
+              "target": "Package",
+              "version": "[0.4.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.101\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
