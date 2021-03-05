@@ -27,8 +27,9 @@ In your application's _Startup.cs_, add the middleware like below:
      
      services.AddHangfirePlus(storage);
      services.AddHangfireServer();
+
      // or
-     //services.AddHangfireServerPlus(storage);
+     // services.AddHangfireServerPlus(storage);
 
      ...
  }
