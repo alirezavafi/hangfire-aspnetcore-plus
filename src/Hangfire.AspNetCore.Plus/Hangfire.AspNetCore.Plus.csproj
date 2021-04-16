@@ -3,10 +3,11 @@
     <PropertyGroup>
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <RootNamespace>Hangfire</RootNamespace>
-        <PackageVersion>1.0.0-alpha</PackageVersion>
+        <PackageVersion>1.0.0</PackageVersion>
         <Title>Hangfire.AspNetCore.Plus</Title>
         <PackageProjectUrl>https://github.com/alirezavafi/hangfire-aspnetcore-plus</PackageProjectUrl>
         <RepositoryUrl>https://github.com/alirezavafi/hangfire-aspnetcore-plus</RepositoryUrl>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Hangfire.AspNetCore" Version="1.7.14" />

@@ -14,11 +14,13 @@
         "outputPath": "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\samples\\Hangfire.AspNetCore.Plus.Sample\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages",
           "C:\\Microsoft\\Xamarin\\NuGet",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Alireza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -26,9 +28,9 @@
           "net5.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.ebidar.com/api/v2": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -100,7 +102,7 @@
       }
     },
     "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\src\\Hangfire.AspNetCore.Plus\\Hangfire.AspNetCore.Plus.csproj": {
-      "version": "1.0.0-alpha",
+      "version": "1.0.0",
       "restore": {
         "projectUniqueName": "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\src\\Hangfire.AspNetCore.Plus\\Hangfire.AspNetCore.Plus.csproj",
         "projectName": "Hangfire.AspNetCore.Plus",
@@ -109,11 +111,13 @@
         "outputPath": "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\src\\Hangfire.AspNetCore.Plus\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
+          "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages",
           "C:\\Microsoft\\Xamarin\\NuGet",
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
           "C:\\Users\\Alireza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.2.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
@@ -121,9 +125,9 @@
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\System\\Components\\Packages": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {},
-          "https://nuget.ebidar.com/api/v2": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "netcoreapp3.1": {

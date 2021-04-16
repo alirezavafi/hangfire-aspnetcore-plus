@@ -7,12 +7,12 @@ namespace Hangfire
     {
         private const string linkHashKey = "x-backgroundjob-keys:";
 
-        public static void SetJobKey(this IStorageConnection connection, string id, string key)
+        public static void SetBusinessKey(this IStorageConnection connection, string id, string key)
         {
             connection.SetRangeInHash(linkHashKey + key, new Dictionary<string, string>() { ["id"] = id });
         }
 
-        public static void RemoveJobKey(this IStorageConnection connection, string key)
+        public static void RemoveBusinessKey(this IStorageConnection connection, string key)
         {
             using (var t = connection.CreateWriteTransaction())
             {
@@ -21,7 +21,7 @@ namespace Hangfire
             }
         }
 
-        public static string GetJobIdByKey(this IStorageConnection connection, string key)
+        public static string GetJobIdByBusinessKey(this IStorageConnection connection, string key)
         {
             var hash = connection.GetAllEntriesFromHash(linkHashKey + key);
             if (hash == null || !hash.ContainsKey("id"))

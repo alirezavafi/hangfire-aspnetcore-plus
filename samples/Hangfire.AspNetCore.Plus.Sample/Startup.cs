@@ -38,7 +38,7 @@ namespace Hangfire.AspNetCore.Plus.Sample
                 DisableGlobalLocks = true,
                 SchemaName = "Hangfire",
             };
-            var storage = new SqlServerStorage("", storageOptions);
+            var storage = new SqlServerStorage("Server=.;Database=HangfireTest;User Id=***;Password=***;", storageOptions);
             Action<IGlobalConfiguration> additionalHangfireConfiguration = (conf) =>
             {
                 conf.UseTagsWithSql(new TagsOptions()
@@ -57,6 +57,7 @@ namespace Hangfire.AspNetCore.Plus.Sample
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseRouting();
             app.UseEndpoints(e =>
             {
                 e.MapHangfireDashboardPlus(app.ApplicationServices, new HangfireDashboardOptions()

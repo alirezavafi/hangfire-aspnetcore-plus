@@ -1895,7 +1895,7 @@
           "lib/netstandard1.3/System.Xml.XDocument.dll": {}
         }
       },
-      "Hangfire.AspNetCore.Plus/1.0.0-alpha": {
+      "Hangfire.AspNetCore.Plus/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
@@ -6377,7 +6377,7 @@
         "system.xml.xdocument.nuspec"
       ]
     },
-    "Hangfire.AspNetCore.Plus/1.0.0-alpha": {
+    "Hangfire.AspNetCore.Plus/1.0.0": {
       "type": "project",
       "path": "../../src/Hangfire.AspNetCore.Plus/Hangfire.AspNetCore.Plus.csproj",
       "msbuildProject": "../../src/Hangfire.AspNetCore.Plus/Hangfire.AspNetCore.Plus.csproj"
@@ -6385,7 +6385,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
-      "Hangfire.AspNetCore.Plus >= 1.0.0-alpha",
+      "Hangfire.AspNetCore.Plus >= 1.0.0",
       "Hangfire.SqlServer >= 1.7.19",
       "Hangfire.Tags.SqlServer >= 1.7.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.1",
@@ -6395,6 +6395,7 @@
   },
   "packageFolders": {
     "C:\\Users\\Alireza\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages": {},
     "C:\\Microsoft\\Xamarin\\NuGet": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
@@ -6408,11 +6409,13 @@
       "outputPath": "E:\\AV\\Projects\\github\\hangfire-aspnetcore-plus\\samples\\Hangfire.AspNetCore.Plus.Sample\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
+        "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\Offline Packages",
         "C:\\Microsoft\\Xamarin\\NuGet",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
         "C:\\Users\\Alireza\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\DevExpress 20.2.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
@@ -6420,9 +6423,9 @@
         "net5.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\DevExpress 20.2\\Components\\System\\Components\\Packages": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.ebidar.com/api/v2": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net5.0": {

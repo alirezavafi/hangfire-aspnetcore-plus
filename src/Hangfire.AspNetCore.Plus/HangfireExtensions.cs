@@ -10,21 +10,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace Hangfire
 {
-    public class HangfireDashboardOptions
-    {
-        public HangfireDashboardAuthorizationMode AuthorizationMode { get; set; } = HangfireDashboardAuthorizationMode.AuthorizeForRemoteRequests;
-        public IList<string> AllowedRoles { get; set; } = new List<string>();
-        public string AuthorizationPolicyName { get; set; }
-        public string DashboardPath { get; set; } = "/hangfire";
-    }
-    
-    public enum HangfireDashboardAuthorizationMode
-    {
-        Authorize,
-        NoAuthorize,
-        AuthorizeForRemoteRequests
-    }
-    
     public static class HangfireExtensions
     {
         public static IServiceCollection AddHangfirePlus(this IServiceCollection services, JobStorage jobStorage,
@@ -46,7 +31,7 @@ namespace Hangfire
                     .UseStorage(jobStorage)
                     .UseConsole()
                     .UseFilter(new ProlongExpirationTimeAttribute())
-                    .UseFilter(new AutomaticRetryAttribute() {Attempts = 10});
+                    .UseFilter(new AutomaticRetryAttribute() {Attempts = 3});
                 configAction?.Invoke(configuration);
             });
             services.AddHangfireConsoleExtensions();
