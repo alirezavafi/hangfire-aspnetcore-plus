@@ -38,6 +38,7 @@ namespace Hangfire.AspNetCore.Plus.Sample
                 DisableGlobalLocks = true,
                 SchemaName = "Hangfire",
             };
+
             var storage = new SqlServerStorage("Server=.;Database=HangfireTest;User Id=***;Password=***;", storageOptions);
             Action<IGlobalConfiguration> additionalHangfireConfiguration = (conf) =>
             {
@@ -58,6 +59,7 @@ namespace Hangfire.AspNetCore.Plus.Sample
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.UseRouting();
+            app.UseHangfirePlus();
             app.UseEndpoints(e =>
             {
                 e.MapHangfireDashboardPlus(app.ApplicationServices, new HangfireDashboardOptions()
@@ -66,6 +68,8 @@ namespace Hangfire.AspNetCore.Plus.Sample
                     DashboardPath = "/dashboard",
                 });
             });
+
+            Hangfire.BackgroundJob.Enqueue<TestJob>(p => p.Test());
         }
     }
 }

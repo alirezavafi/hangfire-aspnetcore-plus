@@ -53,6 +53,12 @@ namespace Hangfire
             });
             return services;
         }
+
+        public static IApplicationBuilder UseHangfirePlus(this IApplicationBuilder app)
+        {
+            JobFilterWithServiceProviderAttribute.ServiceProvider = app.ApplicationServices;
+            return app;
+        }
         
         public static IEndpointRouteBuilder MapHangfireDashboardPlus(this IEndpointRouteBuilder e,
             IServiceProvider provider, HangfireDashboardOptions options = null)

@@ -6,7 +6,8 @@ An improved version of Hangfire.AspNetCore package based on my experience in rec
 - Allows dashboard with various authorization options (local requests only, user with role authentication, no authentication)
 - Adds Hangfire Health check to project
 - Allows custom keys for jobs and retrieve jobs using custom keys
-
+- Supports Dependency Injection for Job filters (Inherit JobFilterWithServiceProviderAttribute)
+- Job filters on success or failure states with dependency injection (Inherit JobFailureFilterAttribute or JobSuccessFilterAttribute)
 ### Instructions
 
 **First**, install the _Hangfire.AspNetCore.Plus_ [NuGet package](https://www.nuget.org/packages/Hangfire.AspNetCore.Plus) into your app.
@@ -50,3 +51,31 @@ In your application's _Startup.cs_, add the middleware like below:
  }
 ```
 
+###Sample Job Filter on Failure
+
+```
+public class TestFilter : JobFailureFilterAttribute
+{
+    private ILogger _logger;
+
+    public TestFilter()
+    {
+        _logger = ServiceProvider.GetRequiredService<ILogger>();
+    }
+    
+    
+    protected override Task OnJobFailure(ElectStateContext context, FailedState state)
+    {
+        _logger.Error("job failure");
+        return Task.CompletedTask;
+    }
+}
+
+public class TestJob
+{
+    [TestFilter]
+    public void Test()
+    {
+        throw new InvalidOperationException();
+    }
+}
