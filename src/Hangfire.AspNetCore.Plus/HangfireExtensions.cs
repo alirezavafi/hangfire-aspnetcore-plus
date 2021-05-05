@@ -17,12 +17,16 @@ namespace Hangfire
         {
             services.AddHttpContextAccessor();
             services.AddTransient<HangfireRoleAuthorizationFilter>();
-            services.AddHealthChecks()
-                .AddHangfire((p) =>
-                {
-                    p.MaximumJobsFailed = 5;
-                    p.MinimumAvailableServers = 1;
-                }, tags: new[] {healthCheckTagName}, name: healthCheckTagName);
+
+            if (!string.IsNullOrWhiteSpace(healthCheckTagName))
+            {
+                services.AddHealthChecks()
+                    .AddHangfire((p) =>
+                    {
+                        p.MaximumJobsFailed = 5;
+                        p.MinimumAvailableServers = 1;
+                    }, tags: new[] {healthCheckTagName}, name: healthCheckTagName);
+            }
             services.AddHangfire(configuration =>
             {
                 configuration
