@@ -22,7 +22,7 @@ namespace Hangfire
                 {
                     p.MaximumJobsFailed = 5;
                     p.MinimumAvailableServers = 1;
-                }, tags: new[] {healthCheckTagName});
+                }, tags: new[] {healthCheckTagName}, name: healthCheckTagName);
             services.AddHangfire(configuration =>
             {
                 configuration
