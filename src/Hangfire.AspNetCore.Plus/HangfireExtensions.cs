@@ -13,7 +13,7 @@ namespace Hangfire
     public static class HangfireExtensions
     {
         public static IServiceCollection AddHangfirePlus(this IServiceCollection services, JobStorage jobStorage,
-            Action<IGlobalConfiguration> configAction = null, TimeSpan? queuePollInternal = null)
+            Action<IGlobalConfiguration> configAction = null, TimeSpan? queuePollInternal = null, string healthCheckTagName = "jobs")
         {
             services.AddHttpContextAccessor();
             services.AddTransient<HangfireRoleAuthorizationFilter>();
@@ -22,7 +22,7 @@ namespace Hangfire
                 {
                     p.MaximumJobsFailed = 5;
                     p.MinimumAvailableServers = 1;
-                }, tags: new[] {"jobs"});
+                }, tags: new[] {healthCheckTagName});
             services.AddHangfire(configuration =>
             {
                 configuration
