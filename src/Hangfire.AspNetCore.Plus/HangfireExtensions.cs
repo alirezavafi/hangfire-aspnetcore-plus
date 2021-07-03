@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using Hangfire.Console;
 using Hangfire.Console.Extensions;
 using Hangfire.Dashboard;
+using Hangfire.Logging;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.Extensions.DependencyInjection;
+using HangfireLogger = Hangfire.Console.Extensions.HangfireLogger;
 
 namespace Hangfire
 {
@@ -39,6 +41,7 @@ namespace Hangfire
                 configAction?.Invoke(configuration);
             });
             services.AddHangfireConsoleExtensions();
+            services.AddSingleton<IHangfireLogger, HangfireSerilogLogger>();
             JobStorage.Current = jobStorage;
 
             return services;
