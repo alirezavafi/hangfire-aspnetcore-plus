@@ -15,7 +15,7 @@ namespace Hangfire
     public static class HangfireExtensions
     {
         public static IServiceCollection AddHangfirePlus(this IServiceCollection services, JobStorage jobStorage,
-            Action<IGlobalConfiguration> configAction = null, TimeSpan? queuePollInternal = null, string healthCheckTagName = "jobs")
+            Action<IGlobalConfiguration> configAction = null, TimeSpan? queuePollInternal = null, string healthCheckTagName = "jobs", bool useJobLongExpirationTime = true)
         {
             services.AddHttpContextAccessor();
             services.AddTransient<HangfireRoleAuthorizationFilter>();
@@ -36,8 +36,10 @@ namespace Hangfire
                     .UseRecommendedSerializerSettings()
                     .UseStorage(jobStorage)
                     .UseConsole()
-                    .UseFilter(new ProlongExpirationTimeAttribute())
                     .UseFilter(new AutomaticRetryAttribute() {Attempts = 3});
+                if (useJobLongExpirationTime)
+                    configuration.UseFilter(new ProlongExpirationTimeAttribute());
+
                 configAction?.Invoke(configuration);
             });
             services.AddHangfireConsoleExtensions();
