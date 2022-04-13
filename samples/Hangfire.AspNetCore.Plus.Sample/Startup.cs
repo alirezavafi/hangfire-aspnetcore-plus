@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Hangfire.InMemory;
 using Hangfire.MissionControl;
 using Hangfire.SqlServer;
 using Hangfire.Tags;
 using Hangfire.Tags.SqlServer;
+using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
@@ -39,18 +42,28 @@ namespace Hangfire.AspNetCore.Plus.Sample
                 SchemaName = "Hangfire",
             };
 
-            var storage = new SqlServerStorage("Server=.;Database=HangfireTest;User Id=***;Password=***;", storageOptions);
+            // var storage = new SqlServerStorage("Server=.;Database=HangfireTest;User Id=***;Password=***;", storageOptions);
+            // Action<IGlobalConfiguration> additionalHangfireConfiguration = (conf) =>
+            // {
+            //     conf.UseTagsWithSql(new TagsOptions()
+            //     {
+            //         Storage = new SqlTagsServiceStorage(storageOptions),
+            //         TagsListStyle = TagsListStyle.Dropdown
+            //     });
+            //     conf.UseMissionControl(typeof(Startup).Assembly);
+            // };
+
+            var storage = new InMemoryStorage();
             Action<IGlobalConfiguration> additionalHangfireConfiguration = (conf) =>
             {
-                conf.UseTagsWithSql(new TagsOptions()
-                {
-                    Storage = new SqlTagsServiceStorage(storageOptions),
-                    TagsListStyle = TagsListStyle.Dropdown
-                });
                 conf.UseMissionControl(typeof(Startup).Assembly);
             };
             
+            services.AddHealthChecks()
+                .AddHangfirePlus((p) => { p.DegradedMinimumAvailableServers = 1; }, tags: new[] { "live", "hangfire" }, name: "jobs");
+
             services.AddHangfirePlus(storage, additionalHangfireConfiguration);
+            services.AddHangfireServer();
             services.AddHangfireServer();
             // or
             //services.AddHangfireServerPlus(storage, additionalHangfireConfiguration);
@@ -66,6 +79,11 @@ namespace Hangfire.AspNetCore.Plus.Sample
                 {
                     AuthorizationMode = HangfireDashboardAuthorizationMode.NoAuthorize,
                     DashboardPath = "/dashboard",
+                });
+                e.MapHealthChecks("/healthz", new HealthCheckOptions()
+                {
+                    Predicate = _ => _.Tags.Contains("hangfire"),
+                    ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
                 });
             });
 
