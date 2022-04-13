@@ -15,19 +15,19 @@ namespace Hangfire
     public static class HangfireExtensions
     {
         public static IServiceCollection AddHangfirePlus(this IServiceCollection services, JobStorage jobStorage,
-            Action<IGlobalConfiguration> configAction = null, TimeSpan? queuePollInternal = null, string healthCheckTagName = "jobs", bool useJobLongExpirationTime = true)
+            Action<IGlobalConfiguration> configAction = null, TimeSpan? queuePollInternal = null, HealthCheckOptions healthCheckOptions = null, bool useJobLongExpirationTime = true)
         {
             services.AddHttpContextAccessor();
             services.AddTransient<HangfireRoleAuthorizationFilter>();
 
-            if (!string.IsNullOrWhiteSpace(healthCheckTagName))
+            if (healthCheckOptions != null)
             {
                 services.AddHealthChecks()
                     .AddHangfire((p) =>
                     {
-                        p.MaximumJobsFailed = 5;
-                        p.MinimumAvailableServers = 1;
-                    }, tags: new[] {healthCheckTagName}, name: healthCheckTagName);
+                        p.MaximumJobsFailed = healthCheckOptions.MaximumJobsFailed;
+                        p.MinimumAvailableServers = healthCheckOptions.MinimumAvailableServers;
+                    }, tags: healthCheckOptions.Tags, name: healthCheckOptions.Name);
             }
             services.AddHangfire(configuration =>
             {
@@ -52,9 +52,9 @@ namespace Hangfire
         public static IServiceCollection AddHangfireServerPlus(
             this IServiceCollection services, JobStorage jobStorage,
             Action<IGlobalConfiguration> config = null, int workerCount = 20, string[] queues = null,
-            TimeSpan? queuePollInternal = null)
+            TimeSpan? queuePollInternal = null, bool useJobLongExpirationTime = true)
         {
-            services.AddHangfirePlus(jobStorage, config, queuePollInternal);
+            services.AddHangfirePlus(jobStorage, config, queuePollInternal, useJobLongExpirationTime: useJobLongExpirationTime);
             services.AddHangfireServer(opt =>
             {
                 opt.WorkerCount = workerCount;
