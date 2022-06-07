@@ -5,7 +5,7 @@ using Serilog.Events;
 
 namespace Hangfire.Logging
 {
-  public class HangfireSerilogLogger : IHangfireLogger
+    public class HangfireSerilogLogger : IHangfireLogger
     {
         private readonly ILogger _defaultLogger;
         private Logger _hangfireLogger;
@@ -18,7 +18,7 @@ namespace Hangfire.Logging
                 .Enrich.WithHangfireContext()
                 .CreateLogger();
         }
-        
+
         public void Write(LogEvent logEvent)
         {
             _hangfireLogger.Write(logEvent);
