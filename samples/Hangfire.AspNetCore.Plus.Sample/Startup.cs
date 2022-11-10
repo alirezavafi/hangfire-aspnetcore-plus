@@ -64,7 +64,6 @@ namespace Hangfire.AspNetCore.Plus.Sample
 
             services.AddHangfirePlus(storage, additionalHangfireConfiguration);
             services.AddHangfireServer();
-            services.AddHangfireServer();
             // or
             //services.AddHangfireServerPlus(storage, additionalHangfireConfiguration);
         }

@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using Correlate.DependencyInjection;
 using Hangfire.Console;
 using Hangfire.Console.Extensions;
+using Hangfire.Correlate;
 using Hangfire.Dashboard;
 using Hangfire.Logging;
+using Hangfire.PerformContextAccessor;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Routing;
@@ -18,16 +21,20 @@ namespace Hangfire
             Action<IGlobalConfiguration> configAction = null, TimeSpan? queuePollInternal = null, bool useJobLongExpirationTime = true)
         {
             services.AddHttpContextAccessor();
+            services.AddCorrelate();
             services.AddTransient<HangfireRoleAuthorizationFilter>();
-
-            services.AddHangfire(configuration =>
+            services.AddHangfirePerformContextAccessor();
+            services.AddHangfire((serviceProvider, configuration) =>
             {
                 configuration
                     .UseSimpleAssemblyNameTypeSerializer()
                     .UseRecommendedSerializerSettings()
                     .UseStorage(jobStorage)
                     .UseConsole()
-                    .UseFilter(new AutomaticRetryAttribute() {Attempts = 3});
+                    .UsePerformContextAccessorFilter()
+                    .UseCorrelate(serviceProvider)
+                    //.UseFilter(new AutomaticRetryAttribute() {Attempts = 3})
+                    ;
                 if (useJobLongExpirationTime)
                     configuration.UseFilter(new ProlongExpirationTimeAttribute());
 
