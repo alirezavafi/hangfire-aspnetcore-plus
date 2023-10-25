@@ -18,10 +18,9 @@ namespace Hangfire
     public static class HangfireExtensions
     {
         public static IServiceCollection AddHangfirePlus(this IServiceCollection services, JobStorage jobStorage,
-            Action<IGlobalConfiguration> configAction = null, TimeSpan? queuePollInternal = null, bool useJobLongExpirationTime = true)
+            Action<IGlobalConfiguration> configAction = null, bool useJobLongExpirationTime = true, bool useCorrelationId = true, bool automaticRetry = false, int automaticRetryCount = 3)
         {
             services.AddHttpContextAccessor();
-            services.AddCorrelate();
             services.AddTransient<HangfireRoleAuthorizationFilter>();
             services.AddHangfirePerformContextAccessor();
             services.AddHangfire((serviceProvider, configuration) =>
@@ -32,9 +31,14 @@ namespace Hangfire
                     .UseStorage(jobStorage)
                     .UseConsole()
                     .UsePerformContextAccessorFilter()
-                    .UseCorrelate(serviceProvider)
-                    //.UseFilter(new AutomaticRetryAttribute() {Attempts = 3})
                     ;
+                if (useCorrelationId)
+                {
+                    services.AddCorrelate();
+                    configuration.UseCorrelate(serviceProvider);
+                }
+                if (automaticRetry)
+                    configuration.UseFilter(new AutomaticRetryAttribute() { Attempts = automaticRetryCount });
                 if (useJobLongExpirationTime)
                     configuration.UseFilter(new ProlongExpirationTimeAttribute());
 
@@ -50,9 +54,9 @@ namespace Hangfire
         public static IServiceCollection AddHangfireServerPlus(
             this IServiceCollection services, JobStorage jobStorage,
             Action<IGlobalConfiguration> config = null, int workerCount = 20, string[] queues = null,
-            TimeSpan? queuePollInternal = null, bool useJobLongExpirationTime = true)
+            bool useJobLongExpirationTime = true, bool useCorrelationId = true, bool automaticRetry = false, int automaticRetryCount = 3)
         {
-            services.AddHangfirePlus(jobStorage, config, queuePollInternal, useJobLongExpirationTime: useJobLongExpirationTime);
+            services.AddHangfirePlus(jobStorage, config, useJobLongExpirationTime: useJobLongExpirationTime, useCorrelationId: useCorrelationId, automaticRetry: automaticRetry, automaticRetryCount: automaticRetryCount);
             services.AddHangfireServer(opt =>
             {
                 opt.WorkerCount = workerCount;
